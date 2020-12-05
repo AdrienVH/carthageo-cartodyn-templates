@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>M2 Carthagéo - Template CartoDyn</title>
+		<!-- CSS -->
+		<link href="https://fonts.googleapis.com/css?family=Bitter|Montserrat&display=swap" rel="stylesheet">
+		<link href="css/reset.css" rel="stylesheet">
+		<link href="css/main.css" rel="stylesheet">
+	</head>
+	<body>
+		<div id="conteneur">
+			<!-- ENTETE -->
+			<header>
+				<p><img src="img/lemonde.png" alt="" /></p>
+			</header>
+			<!-- CONTENU -->
+			<article>
+				<h1>Ceci est un titre de niveau 1</h1>
+				<p class="meta">Promotion Carthagéo 2021 | Le 09/12/2020<br />Par Prénom NOM et Prénom NOM</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vulputate enim sem, ut accumsan massa finibus ac. Praesent et magna eget ante laoreet commodo. Donec luctus justo tortor, ac luctus ex consequat vitae. Proin sodales euismod turpis, eu consectetur arcu consectetur in. Donec libero tellus, laoreet et lobortis quis, volutpat id libero. Phasellus feugiat volutpat quam, eu semper libero ullamcorper ac. Fusce cursus consequat massa, id pellentesque eros. Nunc augue ante, hendrerit sed turpis quis, vulputate ultricies erat.</p>
+				<section>
+					<div class="carte" id="carte1"></div>
+					<div class="info" id="legende">
+						<ul>
+							<li><span></span>Elément 1</li>
+							<li><span></span>Elément 2</li>
+							<li><span></span>Elément 3</li>
+							<li><span></span>Elément 4</li>
+							<li><span></span>Elément 5</li>
+						</ul>
+					</div>
+					<div class="info" id="source">Ceci peut être une source</div>
+					<div class="info" id="encart">Ceci peut être un encart</div>
+				</section>
+				<p class="meta">Ceci est le titre de la carte.</p>
+				<p class="boutons">
+					<span id="action1">Compter les pays</span>
+					<span id="action2">Compter les dpts. (2s)</span>
+					<span id="action3">Modifier la légende</span>
+					<span id="action4">Cacher ITA & ESP</span>
+					<span id="action5">Afficher les LGV</span>
+				</p>
+				<p>Praesent id gravida lacus, a maximus eros. Praesent enim massa, sagittis a vestibulum ac, pretium eget massa. Etiam tempor lacinia fringilla. Proin varius faucibus velit, sit amet accumsan lacus efficitur id. Sed lacus purus, egestas vel maximus quis, faucibus in tortor. Suspendisse convallis neque in lacus varius ornare. Aliquam erat volutpat. Praesent congue lorem lacinia purus facilisis, ut commodo elit ultricies. Nulla faucibus, ipsum id finibus porta, velit nunc commodo nibh, vitae hendrerit nulla libero et elit. Donec auctor nibh eget nibh bibendum, id pretium ex vulputate. Sed blandit sagittis congue. Nam consequat pretium ornare. Maecenas feugiat ex et imperdiet venenatis.</p>
+				<h2>Ceci est un titre de niveau 2</h2>
+				<p>Pellentesque feugiat finibus lectus quis imperdiet. Quisque dignissim lobortis est at aliquam. Cras sagittis pretium massa a laoreet. Donec hendrerit odio ut mi posuere, quis tempor est convallis. Sed elementum metus sit amet viverra interdum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Ut vel erat vitae turpis rhoncus sollicitudin a at risus. Nulla pulvinar sagittis rutrum. Phasellus convallis imperdiet consequat. </p>
+				<section>
+					<div class="carte" id="carte2"></div>
+					<div class="info" id="subtitle">Ceci peut être un sous-titre de votre carte</div>
+				</section>
+				<p class="meta">Ceci est le titre de la seconde carte.</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vulputate enim sem, ut accumsan massa finibus ac. Praesent et magna eget ante laoreet commodo. Donec luctus justo tortor, ac luctus ex consequat vitae. Proin sodales euismod turpis, eu consectetur arcu consectetur in. Donec libero tellus, laoreet et lobortis quis, volutpat id libero. Phasellus feugiat volutpat quam, eu semper libero ullamcorper ac. Fusce cursus consequat massa, id pellentesque eros. Nunc augue ante, hendrerit sed turpis quis, vulputate ultricies erat.</p>
+				<div class="more">
+					<p>Ceci est un encart</p>
+				</div>
+			</article>
+		</div>
+		<!-- PIED DE PAGE -->
+		<footer>
+			<div>
+				<p>Ceci est un pied de page</p>
+				<hr />
+				<p class="social">Facebook &bull; Youtube &bull; Twitter &bull; Instagram &bull; Snapchat</p>
+			</div>
+		</footer>
+	</body>
+	<!-- LIBRAIRIES JAVASCRIPT D3 & JQUERY -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://d3js.org/d3.v5.min.js"></script>
+	<script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+	<!-- DONNEES (GEOJSON, WGS84) -->
+	<script src="js/depts.js"></script>
+	<script src="js/pays.js"></script>
+	<script src="js/lgv.js"></script>
+	<!-- PROGRAMME JAVASCRIPT -->
+	<script src="js/main.js"></script>
+</html>
