@@ -13,6 +13,8 @@ const projection = d3.geoMercator()
 
 map.projection(projection);
 
+// Ajout d'une image SVG portant l'id svg1 à l'élement HTML qui porte l'id carte1
+
 const svg = d3.select("#carte1")
 	.append("svg")
 	.attr("id", "svg1")
@@ -31,6 +33,8 @@ const projection2 = d3.geoConicConformal()
 
 map2.projection(projection2);
 
+// Ajout d'une image SVG portant l'id svg2 à l'élement HTML qui porte l'id carte2
+
 const svg2 = d3.select('#carte2')
 	.append("svg")
 	.attr("id", "svg2")
@@ -38,12 +42,15 @@ const svg2 = d3.select('#carte2')
 	.attr("height", height);
 
 /***************************************************************************/
-/************************************* AJOUT DES OBJETS SUR LES CARTES *****/
+/*********************************** AJOUTER DES OBJETS SUR LES CARTES *****/
 /***************************************************************************/
 
+// Ajout d'un groupe (pays) au SVG (svg)
+
 const pays = svg.append("g");
+
 pays.selectAll("path")
-	// La variable geojson est créée dans le fichier JS qui contient le GeoJSON
+	// La variable geojson_pays est créée dans le fichier JS qui contient le GeoJSON
 	.data(geojson_pays.features)
 	.enter()
 	.append("path")
@@ -52,9 +59,12 @@ pays.selectAll("path")
 	.style("fill", "#f2f0e6")
 	.style("stroke-width", 0);
 
+// Ajout d'un groupe (pays2) au SVG (svg2)
+
 const pays2 = svg2.append("g");
+
 pays2.selectAll("path")
-	// On peut réutiliser la même geojson variable pour une seconde carte
+	// On peut réutiliser la même geojson_pays variable pour une seconde carte
 	.data(geojson_pays.features)
 	.enter()
 	.append("path")
@@ -64,8 +74,12 @@ pays2.selectAll("path")
 	.style("stroke", "white")
 	.style("stroke-width", 0.1);
 
+// Ajout d'un groupe (labels) au SVG (svg2)
+
 const labels = svg2.append("g");
+
 labels.selectAll("text")
+	// On peut réutiliser la même geojson_pays variable pour un second groupe
 	.data(geojson_pays.features)
 	.enter()
 	.append("text")
@@ -74,13 +88,15 @@ labels.selectAll("text")
 	.style("text-anchor", "middle")
 	.style("font-size", "9px")
 	.text(function(d){return d.properties.ADMIN})
-	.filter(function(d){
-		return ["IND","BRA","RUS","UKR","IRN","SAU","ESP","TUR","DZA","LBY","EGY"].indexOf(d.properties.ISO_A3) < 0;
-	}).remove();
+	.filter(d => ["IND","BRA","RUS","UKR","IRN","SAU","ESP","TUR","DZA","LBY","EGY"].indexOf(d.properties.ISO_A3) < 0)
+	.remove();
+
+// Ajout d'un groupe (depts) au SVG (svg)
 
 const depts = svg.append("g");
+
 depts.selectAll("path")
-	// La variable geojson est créée dans le fichier JS qui contient le GeoJSON
+	// La variable geojson_depts est créée dans le fichier JS qui contient le GeoJSON
 	.data(geojson_depts.features)
 	.enter()
 	.append("path")
@@ -90,8 +106,12 @@ depts.selectAll("path")
 	.style("stroke", "grey")
 	.style("stroke-width", 0.4);
 
+// Ajout d'un groupe (lgv) au SVG (svg)
+
 const lgv = svg.append("g");
+
 lgv.selectAll("path")
+	// La variable geojson_lgv est créée dans le fichier JS qui contient le GeoJSON
 	.data(geojson_lgv.features)
 	.enter()
 	.append("path")
@@ -102,13 +122,17 @@ lgv.selectAll("path")
 	.style("stroke-dasharray", [2, 2])
 	.style("stroke-opacity", 0);
 
+// Ajout d'un groupe (pts) au SVG (svg)
+
 const pts = svg.append("g");
-var prefectures = [
+
+const prefectures = [
 	[0.340784, 46.580421],
 	[-0.46482, 46.323867],
 	[0.156153, 45.648655],
 	[-1.15195, 46.159821]
 ];
+
 pts.selectAll("circle")
 	.data(prefectures).enter()
 	.append("circle")
@@ -123,75 +147,77 @@ pts.selectAll("circle")
 /***************************************** CHANGER LE STYLE DES OBJETS *****/
 /***************************************************************************/
 
-depts.selectAll("path").filter(function(d) {
-	return d.properties.CODE_REG == "11";
-}).style("fill", "orange");
+depts.selectAll("path")
+	.filter(d => d.properties.CODE_REG == "11")
+	.style("fill", "orange");
 
 /***************************************************************************/
 /****************** CHANGER LE STYLE DES OBJETS AU SURVOL DE LA SOURIS *****/
 /***************************************************************************/
 
-depts.selectAll("path").filter(function(d) {
-	return d.properties.CODE_DEPT == "86";
-}).on("mouseover", function(d) {
-	d3.select(this)
-		.style("fill", "orange");
-}).on("mouseout", function(d) {
-	d3.select(this)
-		.style("fill", "#f2ebcb");
-});
+// Sans aucune transition
 
-// Avec une transition (https://www.datavis.fr/index.php?page=transition)
+depts.selectAll("path")
+	.filter(d => d.properties.CODE_DEPT == "86")
+	.on("mouseover", function(d) {
+		d3.select(this)
+			.style("fill", "orange");
+	})
+	.on("mouseout", function(d) {
+		d3.select(this)
+			.style("fill", "#f2ebcb");
+	});
 
-depts.selectAll("path").filter(function(d) {
-	return d.properties.CODE_DEPT == "16";
-}).on("mouseover", function(d) {
-	d3.select(this)
-		.transition()
-		.duration(1000) // 1000 millisecondes
-		.style("fill", "orange");
-}).on("mouseout", function(d) {
-	d3.select(this)
-		.transition()
-		.duration(1000) // 1000 millisecondes
-		.style("fill", "#f2ebcb");
-});
+// Avec une transition
+
+depts.selectAll("path")
+	.filter(d => d.properties.CODE_DEPT == "16")
+	.on("mouseover", function(d) {
+		d3.select(this)
+			.transition()
+			.duration(1000) // 1000 millisecondes
+			.style("fill", "orange");
+	})
+	.on("mouseout", function(d) {
+		d3.select(this)
+			.transition()
+			.duration(1000) // 1000 millisecondes
+			.style("fill", "#f2ebcb");
+	});
 
 /***************************************************************************/
 /***************************** PREVOIR UNE ACTION AU CLIC SUR UN OBJET *****/
 /***************************************************************************/
 
-depts.selectAll("path").filter(function(d) {
-	return d.properties.CODE_DEPT == "79";
-}).on("mouseover", function(d) {
-	d3.select(this)
-		.style("cursor", "pointer");
-}).on("click", function(d) {
-	alert("Je suis le département " + d.properties.NOM_DEPT + " !")
-});
+depts.selectAll("path")
+	.filter(d => d.properties.CODE_DEPT == "79")
+	.on("mouseover", function(e) {
+		d3.select(this).style("cursor", "pointer");
+	})
+	.on("click", function(e, dept) {
+		alert("Je suis le département " + dept.properties.NOM_DEPT + " !")
+	});
 
 /***************************************************************************/
 /************************************************* AJOUTER UNE TOOLTIP *****/
 /***************************************************************************/
 
-var tooltip = d3.select("body").append("div").attr("class", "tooltip").style("opacity", 0);
+const tooltip = d3.select("body").append("div").attr("class", "tooltip").style("opacity", 0);
 
 pts.selectAll("circle")
-	.on("mouseover", function(d){
-		tooltip.style("display", "block");
-		tooltip.transition().duration(200).style("opacity", 0.9);
-		tooltip.html("Je suis une préfecture !")
-			.style("left", (d3.event.pageX + 10) + "px")
-			.style("top", (d3.event.pageY - 10) + "px");
-	}).on("mouseout", function(d){
+	.on("mouseover", function(e){
+		tooltip
+			.style("display", "block");
+		tooltip
+			.transition().duration(200).style("opacity", 0.9);
+		tooltip
+			.html("Je suis une préfecture !")
+			.style("left", (e.pageX + 10) + "px")
+			.style("top", (e.pageY - 10) + "px");
+	})
+	.on("mouseout", function(d){
 		tooltip.style("left", "-500px").style("top", "-500px");
 	});
-
-/***************************************************************************/
-
-function zoomOnFeature(feature){
-	
-}
 
 /***************************************************************************/
 /**************************** PREVOIR UNE ACTION AU CLIC SUR UN BOUTON *****/
@@ -208,20 +234,44 @@ $("#action2").click(function(){
 });
 
 $("#action3").click(function(){
-	$("#legende").html("Je viens d'être modifié par le bouton Action 3 !");
+	$("#legende").html("<ul><li><span></span>Hey ! J'ai été modifié par un bouton !</li></ul>");
 });
 
 $("#action4").click(function(){
-	pays.selectAll("path").filter(function(d) {
-		var pays_a_cacher = ["ITA", "ESP"];
-		// Si le code ISO du pays fait partie des codes ISO des pays à cacher
-		if(pays_a_cacher.indexOf(d.properties.SOV_A3) >= 0){
-			return true;
-		}
-		return false;
-	}).style("visibility", "hidden");
+	pays.selectAll("path")
+		.filter(d => d.properties.SOV_A3 == "ITA" || d.properties.SOV_A3 == "ESP")
+		.style("visibility", "hidden");
 });
 
 $("#action5").click(function(){
 	lgv.selectAll("path").style("stroke-opacity", 1);
+});
+
+$("#action6").click(function(){
+	// Modifier l'échelle afin de zoomer
+	projection.scale(5000);
+	// Modifier le centre (sur Paris)
+	projection.center([2.3474, 48.8547]);
+	// Appliquer la nouvelle projection à tous les objets path du SVG
+	svg.selectAll("path")
+		.transition()
+		.duration(0)
+		.attr("d", map);
+	// Appliquer la nouvelle projection à tous les objets circle du groupe pts
+	pts.selectAll("circle")
+		.transition()
+		.duration(0)
+		.attr("cx", function (d){return projection(d)[0];})
+		.attr("cy", function (d){return projection(d)[1];});
+});
+
+$("#action7").click(function(){
+	depts.selectAll("path")
+		.style("fill", function(d){
+			if (parseInt(d.properties.CODE_DEPT) < 50) {
+				return "#fbedff";
+			} else {
+				return "#eeffeb";
+			}
+		});
 });
