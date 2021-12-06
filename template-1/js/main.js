@@ -64,7 +64,7 @@ pays.selectAll("path")
 const pays2 = svg2.append("g");
 
 pays2.selectAll("path")
-	// On peut réutiliser la même geojson_pays variable pour une seconde carte
+	// On peut réutiliser la même variable geojson_pays pour une seconde carte
 	.data(geojson_pays.features)
 	.enter()
 	.append("path")
@@ -79,15 +79,19 @@ pays2.selectAll("path")
 const labels = svg2.append("g");
 
 labels.selectAll("text")
-	// On peut réutiliser la même geojson_pays variable pour un second groupe
+	// On peut réutiliser la même variable geojson_pays pour un second groupe
 	.data(geojson_pays.features)
 	.enter()
 	.append("text")
-	.attr("transform", function(d) { return "translate(" + map2.centroid(d) + ")"; })
+	.attr("transform", function(d) {
+		return "translate(" + map2.centroid(d) + ")";
+	})
 	.attr("fill", "white")
 	.style("text-anchor", "middle")
 	.style("font-size", "9px")
-	.text(function(d){return d.properties.ADMIN})
+	.text(function(d){
+		return d.properties.ADMIN
+	})
 	.filter(d => ["IND","BRA","RUS","UKR","IRN","SAU","ESP","TUR","DZA","LBY","EGY"].indexOf(d.properties.ISO_A3) < 0)
 	.remove();
 
@@ -134,7 +138,8 @@ const prefectures = [
 ];
 
 pts.selectAll("circle")
-	.data(prefectures).enter()
+	.data(prefectures)
+	.enter()
 	.append("circle")
 	.attr("cx", function (d){return projection(d)[0];})
 	.attr("cy", function (d){return projection(d)[1];})
