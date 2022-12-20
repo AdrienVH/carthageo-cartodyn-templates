@@ -39,22 +39,6 @@ communes.selectAll("path")
 	.style("fill", "white")
 	.style("stroke-width", 0);
 
-// Ajout de tuiles Mapbox
-
-let tiles = d3.tile()
-	.size([width, height])
-	.scale(projection.scale() * 2 * Math.PI)
-	.translate(projection([0, 0]))
-();
-svg.selectAll("image")
-	.data(tiles)
-	.enter().append("image")
-	.attr("xlink:href", function(d) { return "https://api.mapbox.com/styles/v1/adrienvh/ckwxen4ncgq4715p2090xoeik/tiles/256/" + d[2] + "/" + d[0] + "/" + d[1] + "?access_token=pk.eyJ1IjoiYWRyaWVudmgiLCJhIjoiU2lDV0N5cyJ9.2pFJAwvwZ9eBKKPiOrNWEw"; })
-	.attr("x", function(d) { return (d[0] + tiles.translate[0]) * tiles.scale; })
-	.attr("y", function(d) { return (d[1] + tiles.translate[1]) * tiles.scale; })
-	.attr("width", tiles.scale)
-	.attr("height", tiles.scale);
-
 // Ajout d'un groupe (villes) au SVG (svg)
 
 const villes = svg.append("g");

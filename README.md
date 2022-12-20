@@ -11,3 +11,11 @@ Template inspiré du site lemonde.fr contenant deux cartes différentes
 ## Template 2
 
 Template avec une carte en plein écran
+
+## Template 3
+
+Template minimaliste avec 3 petites cartes sans fond ni cadre
+
+## Template rendu
+
+Template vide à utiliser pour votre projet

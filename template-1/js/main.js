@@ -89,9 +89,7 @@ labels.selectAll("text")
 	.attr("fill", "white")
 	.style("text-anchor", "middle")
 	.style("font-size", "9px")
-	.text(function(d){
-		return d.properties.ADMIN
-	})
+	.text(d => d.properties.ADMIN)
 	.filter(d => ["IND","BRA","RUS","UKR","IRN","SAU","ESP","TUR","DZA","LBY","EGY"].indexOf(d.properties.ISO_A3) < 0)
 	.remove();
 
@@ -234,8 +232,8 @@ $("#action1").click(function(){
 
 $("#action2").click(function(){
 	window.setTimeout(function(){
-		alert("Il y a " + depts.selectAll("path").data().length + " départements");
-	}, 2000); // 2000 millisecondes
+		alert("Vous avez attendu 3 secondes, mais ça valait le coup ! Il y a " + depts.selectAll("path").data().length + " départements");
+	}, 3000); // 3000 millisecondes
 });
 
 $("#action3").click(function(){

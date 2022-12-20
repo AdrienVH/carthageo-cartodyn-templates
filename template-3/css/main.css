@@ -1,0 +1,16 @@
+p {
+	font-family: Lora;
+	color: grey;
+}
+
+h1 {
+	color: dimgrey;
+	font-size: 50px;
+	font-weight: bold;
+	font-family: Lora;
+}
+
+#carte {
+	width: 300px;
+	height: 400px;
+}
