@@ -1,16 +1,84 @@
-p {
+body, html {
+	width: 1200px;
+	margin: 0 auto;
 	font-family: Lora;
-	color: grey;
+	font-size: 17px;
+	background-color: #212427;
+	color: #212427;
 }
 
 h1 {
-	color: dimgrey;
-	font-size: 50px;
+	padding: 60px 0 20px 0;
+	color: white;
+	font-family: Timmana;
+	font-size: 100px;
 	font-weight: bold;
-	font-family: Lora;
+	text-align: center;
 }
 
-#carte {
-	width: 300px;
-	height: 400px;
+.row {
+	display: flex;
+	margin-bottom: 40px;
+}
+
+.row .texte {
+	position: relative;
+	padding: 20px;
+	width: 750px;
+	background-color: white;
+}
+
+.row .texte h2 {
+	padding: 5px 0 0 0;
+	font-family: Timmana;
+	font-size: 45px;
+	font-weight: bold;
+}
+
+.row .texte p {
+	margin-bottom: 15px;
+	text-align: justify;
+}
+
+.row .texte p.record {
+	font-weight: bold;
+}
+
+.row .texte p.wikipedia {
+	position: absolute;
+	bottom: 0px;
+	left: 10px;
+}
+
+.row.pair .texte p.wikipedia {
+	position: absolute;
+	bottom: 0px;
+	left: auto;
+	right: 20px;
+}
+
+.row .texte p.wikipedia img {
+	width: 50px;
+}
+
+.row .carte {
+	width: 450px;
+	height: 450px;
+	background: white;
+	border-radius: 0 50% 50% 0;
+}
+
+.row.pair .carte {
+	width: 450px;
+	height: 450px;
+	background: white;
+	border-radius: 50% 0 0 50%;
+}
+
+footer {
+	padding-bottom: 30px;
+	font-family: Timmana;
+	font-size: 20px;
+	text-align: center;
+	color: white;
 }
